@@ -21,19 +21,20 @@ For the latest release, in Leiningen, add to `project.clj`:
 (interruptible f <args...>) 
 ```
 
-calls `(f interrupted? <args...>)` catching interrupts (e.g. ctrl-c)
+calls `(f interrupted? <args...>)` catching interrupts like ctrl-c.
 
-where `interrupted?`  is a function which returns true if an interrupt (e.g. ctrl-c) has occured.
+`interrupted?`  is a function which returns true if an interrupt (e.g. ctrl-c) has occured.
+
 f may call `interrupted?` to interrupt its work gracefully:
 
 ```clojure
 (defn f [interrupted? & args]
   ; do some work ...
-  ; check if we shall continue
   (when-not (interrupted?)
      ; continue with some more work... 
      ))
 ```
+
 
 
 ```clojure
